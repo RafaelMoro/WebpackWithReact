@@ -1,4 +1,7 @@
 import React from 'react'
+import github from '@images/github.png'
+import instagram from '@images/instagram.png'
+import twitter from '@images/twitter.png'
 
 const Card = ({person}) => {
     return (
@@ -21,13 +24,13 @@ const Card = ({person}) => {
                 </div>
                 <div className="card_social">
                     <a href="https://twitter.com/gndx">
-                        <img src="" />
+                        <img src={twitter} />
                     </a>
                     <a href="https://github.com/gndx">
-                        <img src="" />
+                        <img src={github} />
                     </a>
                     <a href="https://instagram.com/gndx">
-                        <img src="" />
+                        <img src={instagram} />
                     </a>
                 </div>
             </div>

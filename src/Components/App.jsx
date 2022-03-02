@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card} from './Card'
-import { useInitialState } from '../utils/getData'
-import '../styles/main.css'
+import { useInitialState } from '@utils/getData'
+import '@styles/main.css'
 
 const App = () => {
     

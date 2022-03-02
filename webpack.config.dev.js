@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const DotEnv = require('dotenv-webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -10,7 +11,13 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@images': path.resolve(__dirname, 'src/assets/images/'),
+            '@utils': path.resolve(__dirname, 'src/utils/')
+        }
     },
     mode: 'development',
     devtool: 'source-map',
@@ -36,6 +43,10 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.png/,
+                type: 'asset/resource'
             }
         ]
     },
@@ -47,7 +58,15 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
-        new DotEnv()
+        new DotEnv(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src', 'assets/images'),
+                    to: 'assets/images'
+                }
+            ]
+        })
     ],
     devServer: {
         static: path.join(__dirname, 'dist'),
