@@ -10,7 +10,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: '[name].[contenthash].js',
+        assetModuleFilename: 'assets/images/[hash][ext][query]',
         publicPath: '/'
     },
     resolve: {
@@ -72,7 +73,7 @@ module.exports = {
             filename: './index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: 'assets/[name].[contenthash].css'
         }),
         new CleanWebpackPlugin(),
         new CopyPlugin({
